@@ -131,8 +131,8 @@ apt-get -y install wget || {
   exit 1
 }
 
-#find out external ip 
-IP=`wget -q -O - http://api.ipify.org`
+# Get ip address
+IP=`ifconfig | grep 'inet addr:'| grep -v '127.0.0.*' | cut -d: -f2 | awk '{ print $1}' | head -1`;
 
 if [ "x$IP" = "x" ]
 then
